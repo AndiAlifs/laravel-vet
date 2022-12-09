@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AuthController;
+use GuzzleHttp\Middleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +27,10 @@ Route::group([
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::get('/user-profile', [AuthController::class, 'userProfile']);    
+});
+
+Route::group(['middleware' => 'jwt.auth'],function () {
+    Route::get('accounts', AccountController::class . '@indexAll');
+    Route::get('accounts/{id}', AccountController::class . '@findOne');
+    Route::post('accounts', AccountController::class . '@store');
 });
