@@ -51,21 +51,27 @@ class AccountController extends Controller
         return redirect('/');
     }
 
-
-    public function edit(Account $account)
+    public function update(Request $request)
     {
-        //
+        $account = Account::findOrFail($request->id);
+        $account->nama = $request->nama;
+        $account->saldo = $request->saldo;
+        $account->norek = $request->norek;
+        $account->save();
+
+        session()->flash('warning', 'Account telah berhasil diubah!');
+
+        return redirect('/');
     }
 
 
-    public function update(Request $request, Account $account)
+    public function destroy($id)
     {
-        //
-    }
+        $account = Account::findOrFail($id);
+        $account->delete();
 
+        session()->flash('danger', 'Account telah berhasil dihapus!');
 
-    public function destroy(Account $account)
-    {
-        //
+        return redirect('/');
     }
 }

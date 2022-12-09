@@ -11,9 +11,9 @@
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-    @elseif (session('error'))
+    @elseif (session('danger'))
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{ session('error') }}
+            {{ session('danger') }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -142,15 +142,15 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form action="#" method="POST">
+                                <form action="{{ route  ('accounts.delete',['id'=>$account->id])  }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <div class="modal-body">
                                         <p>Apakah anda yakin ingin menghapus data ini?</p>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                        <button type="submit" class="btn btn-danger">Hapus</button>
                                     </div>
                                 </form>
                             </div>
