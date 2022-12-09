@@ -34,4 +34,5 @@ Route::group(['middleware' => 'jwt.auth'],function () {
     Route::get('accounts/{id}', AccountController::class . '@findOne');
     Route::post('accounts', AccountController::class . '@store');
     Route::post('accounts/{id}', AccountController::class . '@updateOne');
+    Route::delete('accounts/{id}', AccountController::class . '@deleteOne');
 });

@@ -86,4 +86,11 @@ class AccountController extends Controller
         $account->save();
         return new AccountResource($account);
     }
+
+    public function deleteOne($id)
+    {
+        $account = Account::findOrFail($id);
+        $account->delete();
+        return new AccountResource($account);
+    }
 }
