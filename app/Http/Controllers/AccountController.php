@@ -76,4 +76,14 @@ class AccountController extends Controller
         $account->save();
         return new AccountResource($account);
     }
+
+    public function updateOne(Request $request, $id)
+    {   
+        $account = Account::findOrFail($id);
+        $account->nama = $request->nama;
+        $account->saldo = $request->saldo;
+        $account->norek = $request->norek;
+        $account->save();
+        return new AccountResource($account);
+    }
 }
