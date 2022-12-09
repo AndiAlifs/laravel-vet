@@ -51,9 +51,9 @@ class AccountController extends Controller
         return redirect('/');
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $account = Account::findOrFail($request->id);
+        $account = Account::findOrFail($id);
         $account->nama = $request->nama;
         $account->saldo = $request->saldo;
         $account->norek = $request->norek;

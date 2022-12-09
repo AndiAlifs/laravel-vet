@@ -78,10 +78,10 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form action="#" method="POST">
+                                <form action="{{ route('accounts.update',['id'=>$account->id]) }}" method="POST">
                                     @csrf
                                     @method('PUT')
-                                    <div
+                                <div
                                         class="modal-body
                                         @error('norek') has-error @enderror">
                                         <div
@@ -142,7 +142,7 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form action="{{ route  ('accounts.delete',['id'=>$account->id])  }}" method="POST">
+                                <form action="{{ route('accounts.delete',['id'=>$account->id])  }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <div class="modal-body">
