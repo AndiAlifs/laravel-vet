@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Account;
 use Illuminate\Http\Request;
 
+use App\Http\Resources\Account as AccountResource;
+
 class AccountController extends Controller
 {
     /**
@@ -14,7 +16,20 @@ class AccountController extends Controller
      */
     public function index()
     {
-        //
+        
+    }
+
+    public function indexAll()
+    {
+        $accounts = Account::all();
+        return AccountResource::collection($accounts);
+    }
+
+    public function findOne()
+    {   
+        $id = request()->route('id');
+        $account = Account::findOrFail($id);
+        return new AccountResource($account);
     }
 
     /**
@@ -24,7 +39,7 @@ class AccountController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -35,7 +50,12 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $account = new Account;
+        $account->nama = $request->nama;
+        $account->saldo = $request->saldo;
+        $account->norek = $request->norek;
+        $account->save();
+        return new AccountResource($account);
     }
 
     /**

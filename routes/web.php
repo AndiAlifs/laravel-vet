@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Monolog\Handler\RotatingFileHandler;
+
+use App\Http\Controllers\AccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +18,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::group(['prefix' => 'api'], function () {
+    Route::get('accounts', AccountController::class . '@indexAll');
+    Route::get('accounts/{id}', AccountController::class . '@findOne');
+    Route::post('accounts', AccountController::class . '@store');
 });
