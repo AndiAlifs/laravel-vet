@@ -17,5 +17,6 @@ use App\Http\Controllers\AccountController;
 */
 
 Route::get('/', AccountController::class . '@index');
+Route::post('/accounts', AccountController::class . '@save')->name('accounts.save');
 
 
