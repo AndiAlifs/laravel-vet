@@ -33,4 +33,5 @@ Route::group(['middleware' => 'jwt.auth'],function () {
     Route::get('accounts', AccountController::class . '@indexAll');
     Route::get('accounts/{id}', AccountController::class . '@findOne');
     Route::post('accounts', AccountController::class . '@store');
+    
 });

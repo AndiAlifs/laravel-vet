@@ -15,29 +15,6 @@ class AccountController extends Controller
         return view('accounts.index', compact('accounts'));
     }
 
-    public function indexAll()
-    {
-        $accounts = Account::all();
-        return AccountResource::collection($accounts);
-    }
-
-    public function findOne()
-    {
-        $id = request()->route('id');
-        $account = Account::findOrFail($id);
-        return new AccountResource($account);
-    }
-
-    public function store(Request $request)
-    {
-        $account = new Account;
-        $account->nama = $request->nama;
-        $account->saldo = $request->saldo;
-        $account->norek = $request->norek;
-        $account->save();
-        return new AccountResource($account);
-    }
-
     public function save()
     {
         $account = new Account;
@@ -73,5 +50,30 @@ class AccountController extends Controller
         session()->flash('danger', 'Account telah berhasil dihapus!');
 
         return redirect('/');
+    }
+
+    // via resource
+
+    public function indexAll()
+    {
+        $accounts = Account::all();
+        return AccountResource::collection($accounts);
+    }
+
+    public function findOne()
+    {
+        $id = request()->route('id');
+        $account = Account::findOrFail($id);
+        return new AccountResource($account);
+    }
+
+    public function store(Request $request)
+    {
+        $account = new Account;
+        $account->nama = $request->nama;
+        $account->saldo = $request->saldo;
+        $account->norek = $request->norek;
+        $account->save();
+        return new AccountResource($account);
     }
 }
