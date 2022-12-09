@@ -16,12 +16,6 @@ use App\Http\Controllers\AccountController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', AccountController::class . '@index');
 
-Route::group(['prefix' => 'api'], function () {
-    Route::get('accounts', AccountController::class . '@indexAll');
-    Route::get('accounts/{id}', AccountController::class . '@findOne');
-    Route::post('accounts', AccountController::class . '@store');
-});
+
